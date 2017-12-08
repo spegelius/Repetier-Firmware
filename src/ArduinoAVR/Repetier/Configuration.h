@@ -196,13 +196,13 @@ pins. Separate multiple GCODEs with \n
 /** \brief Number of steps for a 1mm move in x direction.
 For xy gantry use 2*belt moved!
 Overridden if EEPROM activated. */
-#define XAXIS_STEPS_PER_MM 80
+#define XAXIS_STEPS_PER_MM 80.5
 /** \brief Number of steps for a 1mm move in y direction.
 For xy gantry use 2*belt moved!
 Overridden if EEPROM activated.*/
-#define YAXIS_STEPS_PER_MM 80
+#define YAXIS_STEPS_PER_MM 80.2
 /** \brief Number of steps for a 1mm move in z direction  Overridden if EEPROM activated.*/
-#define ZAXIS_STEPS_PER_MM 2134.8
+#define ZAXIS_STEPS_PER_MM 2140.5
 #endif
 
 // ##########################################################################################
@@ -961,8 +961,8 @@ on this endstop.
 
 // When you have several endstops in one circuit you need to disable it after homing by moving a
 // small amount back. This is also the case with H-belt systems.
-#define ENDSTOP_X_BACK_ON_HOME 10
-#define ENDSTOP_Y_BACK_ON_HOME 10
+#define ENDSTOP_X_BACK_ON_HOME 0
+#define ENDSTOP_Y_BACK_ON_HOME 0
 #define ENDSTOP_Z_BACK_ON_HOME 0
 // If you do z min homing, you might want to rise extruder a bit after homing so it does not heat
 // touching your bed.
@@ -1165,20 +1165,20 @@ Mega. Used only for nonlinear systems like delta or tuga. */
 // needs to heat all extruders (1) or only current extruder (0)
 #define ZHOME_HEAT_ALL 1 
 // Z-height for heating extruder during homing
-#define ZHOME_HEAT_HEIGHT 20
+#define ZHOME_HEAT_HEIGHT 5
 // If your bed might bend while probing, because your sensor is the extruder tip
 // you can define a predefined x,y position so bending is always the same and
 // can be compensated. Set coordinate to 999999 to ignore positions and just
 // use the position you are at.
-#define ZHOME_X_POS 0
-#define ZHOME_Y_POS 10
+#define ZHOME_X_POS 20
+#define ZHOME_Y_POS 20
 
 /* If you have a backlash in both z-directions, you can use this. For most printer, the bed will be pushed down by it's
 own weight, so this is nearly never needed. */
-#define ENABLE_BACKLASH_COMPENSATION 1
+#define ENABLE_BACKLASH_COMPENSATION 0
 #define Z_BACKLASH 0
-#define X_BACKLASH 0.2
-#define Y_BACKLASH 0.1
+#define X_BACKLASH 0.05
+#define Y_BACKLASH 0.04
 
 /** Comment this to disable ramp acceleration */
 #define RAMP_ACCELERATION 1
@@ -1518,14 +1518,14 @@ to recalibrate z.
 #define Z_PROBE_SWITCHING_DISTANCE 2 // Distance to safely switch off probe after it was activated
 #define Z_PROBE_REPETITIONS 3 // Repetitions for probing at one point.
 /** Distance between nozzle and bed when probe triggers. */
-#define Z_PROBE_HEIGHT 0.95
+#define Z_PROBE_HEIGHT 0.3
 /** These scripts are run before resp. after the z-probe is done. Add here code to activate/deactivate probe if needed. */
 #define Z_PROBE_START_SCRIPT ""
 #define Z_PROBE_FINISHED_SCRIPT ""
 /** Set 1 if you need a hot extruder for good probe results. Normally only required if nozzle is probe. */
-#define Z_PROBE_REQUIRES_HEATING 0
+#define Z_PROBE_REQUIRES_HEATING 1
 /** Minimum extruder temperature for probing. If it is lower, it will be increased to that value. */
-#define Z_PROBE_MIN_TEMPERATURE 150
+#define Z_PROBE_MIN_TEMPERATURE 60
 
 /*
 Define how we measure the bed rotation. 
@@ -1576,8 +1576,8 @@ motorized bed leveling */
 #define Z_PROBE_X1 100
 #define Z_PROBE_Y1 20
 #define Z_PROBE_X2 160
-#define Z_PROBE_Y2 170
-#define Z_PROBE_X3 20
+#define Z_PROBE_Y2 175
+#define Z_PROBE_X3 0
 #define Z_PROBE_Y3 170
 /* Bending correction adds a value to a measured z-probe value. This may be
   required when the z probe needs some force to trigger and this bends the
@@ -1606,9 +1606,9 @@ motorized bed leveling */
 /* For delta printers you simply define the measured radius around origin */
 #define DISTORTION_CORRECTION_R       80
 /* For all others you define the correction rectangle by setting the min/max coordinates. Make sure the the probe can reach all points! */
-#define DISTORTION_XMIN 10
-#define DISTORTION_YMIN 10
-#define DISTORTION_XMAX 170
+#define DISTORTION_XMIN 0
+#define DISTORTION_YMIN 15
+#define DISTORTION_XMAX 175
 #define DISTORTION_YMAX 180
 
 /** Uses EEPROM instead of ram. Allows bigger matrix (up to 22x22) without any ram cost.
@@ -1628,12 +1628,12 @@ NOTE: Explicit z changes will always trigger an update!
 #define DISTORTION_UPDATE_FREQUENCY   15
 /** z distortion degrades to 0 from this height on. You should start after the first layer to get
 best bonding with surface. */
-#define DISTORTION_START_DEGRADE 0.5
+#define DISTORTION_START_DEGRADE 400
 /** z distortion correction gets down to 0 at this height. */
-#define DISTORTION_END_HEIGHT 1.5
+#define DISTORTION_END_HEIGHT 400
 /** If your corners measurement points are not measurable with given radius, you can
 set this to 1. It then omits the outer measurement points allowing a larger correction area.*/
-#define DISTORTION_EXTRAPOLATE_CORNERS 0
+#define DISTORTION_EXTRAPOLATE_CORNERS 1
 
 /* If your printer is not exactly square but is more like a parallelogram, you can
 use this to compensate the effect of printing squares like parallelograms. Set the
@@ -1656,7 +1656,7 @@ Always hard to say since the other angle is 89° in this case!
 /* Babystepping allows to change z height during print without changing official z height */
 #define FEATURE_BABYSTEPPING 1
 /* If you have a threaded rod, you want a higher multiplicator to see an effect. Limit value to 50 or you get easily overflows.*/
-#define BABYSTEP_MULTIPLICATOR 1
+#define BABYSTEP_MULTIPLICATOR 5
 
 /* Define a pin to turn light on/off */
 #define CASE_LIGHTS_PIN -1
